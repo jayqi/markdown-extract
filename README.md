@@ -80,7 +80,9 @@ Here is a sample workflow usage:
    pattern: 'v2.0.0'
 - name: Write output to file
   run: |
-    printf '${{ steps.extract-changelog.outputs.markdown }}' > CHANGELOG-extracted.txt
+    cat <<'EOF' > CHANGELOG-extracted.txt
+    ${{ steps.extract-changelog.outputs.markdown }}
+    EOF
 - uses: actions/upload-artifact@v3
   with:
    name: changelog
